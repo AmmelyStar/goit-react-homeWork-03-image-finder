@@ -49,8 +49,8 @@ class App extends Component {
       const data = response.data;
        const newImages = data.hits;
        
-      if (newImages.length === 0 || !this.state.searchName) {
-        
+      if (data.hits.length === 0 || !this.state.searchName) {
+        console.log(data.hits.length)
         return toast.info('Sorry image not found...', {
           position: toast.POSITION.TOP_RIGHT,
         });
