@@ -73,13 +73,18 @@ class App extends Component {
   };
 
    handleSubmit = searchQuery => {
+  if (searchQuery.trim() !== this.state.searchName.trim()) {
     this.setState({
-      searchName: searchQuery,
+      searchName: searchQuery.trim(),
       images: [], 
       currentPage: 1, 
-    }
-);
-  };
+    });
+  } else {
+     return toast.info('You have already typed that word', {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+  }
+};
 
     loadMore = () => {
     this.setState(

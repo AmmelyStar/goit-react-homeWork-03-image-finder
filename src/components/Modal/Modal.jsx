@@ -17,21 +17,31 @@ class Modal extends Component {
     }
   };
 
-  handleImageClick = () => {
-    
+  
+
+  handleImageClick = (event) => {
+    event.stopPropagation();    
+  };
+
+  handleOverlayClick = event => {
+    if (event.target === event.currentTarget) {
+      this.props.onClose();
+    }
   };
 
   render() {
-    const { largeImageURL, tags, onClose } = this.props;
+    const { largeImageURL, tags } = this.props;
 
     return (
       <>
-        <div className={css.overlay} onClick={onClose}>
+        <div className={css.overlay} onClick={this.handleOverlayClick}>
           <div
-            className={(css.modal, css.close)}
-            onClick={this.handleImageClick}
-          >
-            <img src={largeImageURL} alt={tags} />
+            className={(css.modal, css.close)}> 
+            <img
+              src={largeImageURL}
+              alt={tags}
+              onClick={this.handleImageClick}
+            />
           </div>
         </div>
       </>
